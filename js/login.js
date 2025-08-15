@@ -100,10 +100,7 @@ registerBtn.addEventListener('click', function () {
 });
 
 forgotpassBtn.addEventListener('click', function () {
-  // ฟีเจอร์ลืมรหัสผ่าน (สามารถพัฒนาต่อได้)
-  alert(currentLang === 'th' ? 
-    'ฟีเจอร์นี้อยู่ในระหว่างการพัฒนา กรุณาติดต่อผู้ดูแลระบบ' : 
-    'This feature is under development. Please contact system administrator');
+  window.location.href = '/HTML/forgot.html';
 });
 
 // ตั้งค่าภาษาเริ่มต้น

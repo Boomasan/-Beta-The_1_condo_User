@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>รีเซ็ตรหัสผ่าน</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/forgot.css">
+</head>
+
+<body>
+  <h2>รีเซ็ตรหัสผ่าน</h2>
+  <form id="resetForm">
+    <input type="password" id="newPassword" placeholder="รหัสผ่านใหม่" required />
+    <div class="password-requirements" id="passwordRequirements">
+      <div class="requirement" id="req-length">• <span id="req-length-text">อย่างน้อย 8 ตัวอักษร</span></div>
+      <div class="requirement" id="req-upper">• <span id="req-upper-text">ตัวอักษรใหญ่อย่างน้อย 1 ตัว</span></div>
+      <div class="requirement" id="req-lower">• <span id="req-lower-text">ตัวอักษรเล็กอย่างน้อย 1 ตัว</span></div>
+      <div class="requirement" id="req-number">• <span id="req-number-text">ตัวเลขอย่างน้อย 1 ตัว</span></div>
+    </div>
+    <input type="password" id="confirmPassword" placeholder="ยืนยันรหัสผ่านใหม่" required />
+    <button type="submit">รีเซ็ตรหัสผ่าน</button>
+  </form>
+  <p id="msg"></p>
+  <script src="/js/forgot.js"></script>
+</body>
+
+</html>
