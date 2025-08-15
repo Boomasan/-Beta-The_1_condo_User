@@ -2,56 +2,27 @@
 <html lang="th">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The 1 Condo : หน้าหลัก</title>
-    <link rel="stylesheet" href="/css/index.css">
+  <meta charset="UTF-8" />
+  <title>เข้าสู่ระบบ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/login.css">
 </head>
 
 <body>
-    <div class="header">
-        <div class="logo">
-            <img src="/image/logo.png" alt="" class="logo">
-        </div>
-        <div class="nav-icons">
-            <button id="translateBtn" class="lang-toggle"> <!--translate button-->
-                TH
-            </button>
-            <div id="mySidepanel" class="sidepanel"> <!--menu sidepanel-->
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-                <a href="/index.html">หน้าหลัก</a>
-                <a href="/HTML/Notifications.html">การแจ้งเตือน</a>
-                <a href="#">Clients</a>
-                <a href="#">Contact</a>
-            </div>
-            <button class="openbtn" onclick="openNav()">☰</button>
-            <img src="/image/user logo.png" alt="" class="profile-icon">
-        </div>
-    </div>
+  <img src="/image/logo.png" alt="The 1 condo logo">
+  <div id="langToggle">EN</div>
+  <h2 id="loginTitle">เข้าสู่ระบบ</h2>
+  <form id="loginForm">
+    <input type="text" name="username" placeholder="ชื่อผู้ใช้" required />
+    <input type="password" name="password" placeholder="รหัสผ่าน" required />
+    <button type="submit" id="loginBtn">เข้าสู่ระบบ</button>
+  </form>
+  <a href="/HTML/register.html" class="new-acc-button" id="registerBtn">สร้างบัญชีใหม่</a>
+  <p id="msg" style="color:red;"></p>
+  <a href="/HTML/forgotpassword.html" class="forgot-pass-button" id="forgotpassBtn">ลืมรหัสผ่าน</a>
+  <p id="msg" style="color:red;"></p>
 
-    <div class="hero-section">
-        <div class="hero-content">
-            <div class="hero-left">
-                <img src="/image/view the 1 condo.png" alt="The 1 Condo Building" class="building-image">
-            </div>
-            <div class="hero-right">
-                <div class="hero-text">
-                    <h1>หนึ่งคอนโดมิเนียม</h1>
-                    <p class="subtitle">แจ้งวัฒนะ</p>
-                    <div class="location-info">
-                        <img src="/image/trane pink line.png" alt="BTS Skytrain" class="train-image">
-                        <p>อยู่ติดถนนใหญ่</p>
-                        <p>และ</p>
-                        <p>รถไฟฟ้าสายสีชมพู</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer">
-        <p>&copy; 2025 The 1 Condo Management. All rights reserved.</p>
-    </div>
-    <script src="/js/index.js"></script>
+  <script src="/js/login.js"></script>
 </body>
 
 </html>

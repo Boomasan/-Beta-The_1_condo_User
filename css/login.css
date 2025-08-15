@@ -6,13 +6,16 @@ body {
   margin: 50px auto;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
+
 h2 {
   text-align: center;
   color: #5d4037;
 }
-input, button {
+
+input,
+button {
   width: 100%;
   padding: 12px;
   margin: 10px 0;
@@ -21,35 +24,54 @@ input, button {
   font-size: 16px;
   box-sizing: border-box;
 }
+
 input {
   background-color: #fff9f2;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 button {
   background-color: #8d6e63;
   color: white;
   border: none;
   transition: background 0.3s;
 }
+
 button:hover {
   background-color: #cacaca;
 }
-.link-button {
+
+.new-acc-button {
   background: none;
   border: none;
   color: #000000;
+  margin-left: 150px;
   text-decoration: underline;
   cursor: pointer;
   font-size: 1em;
   margin-top: 10px;
   opacity: 50%;
 }
+
+.forgot-pass-button {
+  background: none;
+  border: none;
+  color: #000000;
+  margin-left: 160px;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 10px;
+  opacity: 50%;
+}
+
 #msg {
   text-align: center;
   margin-top: 10px;
 }
+
 #langToggle {
   float: right;
   margin-bottom: 10px;

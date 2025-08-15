@@ -5,8 +5,10 @@ var texts = {
     password: 'รหัสผ่าน',
     loginBtn: 'เข้าสู่ระบบ',
     registerBtn: 'สร้างบัญชีใหม่',
+    forgotpassBtn: 'ลืมรหัสผ่าน',
     success: 'เข้าสู่ระบบสำเร็จ! กำลังโหลด...',
-    failed: 'เข้าสู่ระบบล้มเหลว',
+    failed: 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง',
+    notRegistered: 'ยังไม่ได้สมัครสมาชิก? กรุณาสมัครสมาชิกก่อน',
     error: 'เกิดข้อผิดพลาด'
   },
   en: {
@@ -14,9 +16,11 @@ var texts = {
     username: 'Username',
     password: 'Password',
     loginBtn: 'Login',
-    registerBtn: 'Create Account',
+    registerBtn: 'Create New Account',
+    forgotpassBtn: 'Forgot Password',
     success: 'Login successful! Redirecting...',
-    failed: 'Login failed',
+    failed: 'Username or password is incorrect',
+    notRegistered: 'Not registered yet? Please register first',
     error: 'An error occurred'
   }
 };
@@ -36,7 +40,30 @@ function setLanguage(lang) {
   document.querySelector('input[name=password]').placeholder = texts[lang].password;
   document.getElementById('loginBtn').textContent = texts[lang].loginBtn;
   document.getElementById('registerBtn').textContent = texts[lang].registerBtn;
+  document.getElementById('forgotpassBtn').textContent = texts[lang].forgotpassBtn;
   langToggle.textContent = lang === 'th' ? 'EN' : 'TH';
+}
+
+// เช็คว่ามีผู้ใช้ในระบบหรือไม่
+function checkUserExists(username) {
+  var users = JSON.parse(localStorage.getItem('users') || '[]');
+  return users.find(function(user) {
+    return user.username === username;
+  });
+}
+
+// ตรวจสอบการเข้าสู่ระบบ
+function validateLogin(username, password) {
+  var user = checkUserExists(username);
+  if (!user) {
+    return { success: false, message: texts[currentLang].notRegistered };
+  }
+  
+  if (user.password === password) {
+    return { success: true, user: user };
+  } else {
+    return { success: false, message: texts[currentLang].failed };
+  }
 }
 
 langToggle.addEventListener('click', function () {
@@ -46,40 +73,38 @@ langToggle.addEventListener('click', function () {
 form.addEventListener('submit', function (e) {
   e.preventDefault();
   var formData = new FormData(form);
-  var data = {
-    username: formData.get('username'),
-    password: formData.get('password')
-  };
+  var username = formData.get('username');
+  var password = formData.get('password');
 
-  fetch('/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  })
-  .then(function (res) {
-    return res.json().then(function (result) {
-      if (res.ok) {
-        msg.style.color = 'green';
-        msg.textContent = texts[currentLang].success;
-        setTimeout(function () {
-          window.location.href = '/admin-payments.html';
-        }, 1000);
-      } else {
-        msg.style.color = 'red';
-        msg.textContent = result.message || texts[currentLang].failed;
-      }
-    });
-  })
-  .catch(function () {
-    msg.textContent = texts[currentLang].error;
-  });
+  var loginResult = validateLogin(username, password);
+  
+  if (loginResult.success) {
+    // บันทึกข้อมูลผู้ใช้ที่เข้าสู่ระบบ
+    localStorage.setItem('currentUser', JSON.stringify(loginResult.user));
+    
+    msg.style.color = 'green';
+    msg.textContent = texts[currentLang].success;
+    
+    // เปลี่ยนไปหน้าหลัก (index.html หรือ main.html)
+    setTimeout(function () {
+      window.location.href = '/HTML/main.html'; // หรือหน้าหลักของคุณ
+    }, 1000); 
+  } else {
+    msg.style.color = 'red';
+    msg.textContent = loginResult.message;
+  }
 });
 
 registerBtn.addEventListener('click', function () {
-  window.location.href = './register.html';
-});
-forgotpassBtn.addEventListener('click', function () {
-  window.location.href = './forgotpass.html';
+  window.location.href = '/register.html';
 });
 
+forgotpassBtn.addEventListener('click', function () {
+  // ฟีเจอร์ลืมรหัสผ่าน (สามารถพัฒนาต่อได้)
+  alert(currentLang === 'th' ? 
+    'ฟีเจอร์นี้อยู่ในระหว่างการพัฒนา กรุณาติดต่อผู้ดูแลระบบ' : 
+    'This feature is under development. Please contact system administrator');
+});
+
+// ตั้งค่าภาษาเริ่มต้น
 setLanguage(currentLang);
